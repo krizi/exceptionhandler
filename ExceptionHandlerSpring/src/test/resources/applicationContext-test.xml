@@ -23,11 +23,9 @@
 		class="ch.sample.project.SampleExceptionHandlerFactory">
 		<property name="mapping">
 			<map>
-				<entry key="defaultExceptionHandler"
-					value="ch.krizi.exceptionhandler.handler.DefaultExceptionHandler" />
+				<entry key="defaultExceptionHandler" value="ch.krizi.exceptionhandler.handler.DefaultExceptionHandler" />
 				<entry key="exceptionHolder" value="ch.krizi.exceptionhandler.handler.ExceptionHolder" />
-				<entry key="unreachedExceptionHandler"
-					value="ch.krizi.exceptionhandler.handler.UnreachedExceptionHandler" />
+				<entry key="unreachedExceptionHandler" value="ch.krizi.exceptionhandler.handler.UnreachedExceptionHandler" />
 			</map>
 		</property>
 	</bean>
