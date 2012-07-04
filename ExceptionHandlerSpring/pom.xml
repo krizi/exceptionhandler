@@ -82,7 +82,6 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-<!-- 					<forkmode>pertest</forkmode> -->
 					<argLine>-javaagent:${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar</argLine>
 				</configuration>
 			</plugin>
