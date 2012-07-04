@@ -27,6 +27,17 @@ public class SuppressExceptionAspectTestCase {
 	}
 
 	@Test
+	public void catchedByAspectAndReturnNull() {
+		try {
+			Object obj = sampleBean.throwAndSuppressExceptionReturnNull();
+
+			Assert.assertNull(obj);
+		} catch (IllegalArgumentException e) {
+			Assert.fail("exception should be suppressed by aspect");
+		}
+	}
+
+	@Test
 	public void catchedByAspectAndReturnEmptyList() {
 		try {
 			List<?> list = sampleBean.throwAndSuppressExceptionReturnEmptyList();

@@ -22,6 +22,11 @@ public class SampleBean {
 	public void throwAndSuppressException() {
 		throw new IllegalArgumentException();
 	}
+	
+	@SuppressExceptions
+	public Object throwAndSuppressExceptionReturnNull() {
+		throw new IllegalArgumentException();
+	}
 
 	@SuppressExceptions(returnClass = ArrayList.class)
 	public List<?> throwAndSuppressExceptionReturnEmptyList() {
