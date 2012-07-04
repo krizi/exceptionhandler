@@ -33,7 +33,7 @@ public class ExceptionHolder extends ExceptionHandler<Throwable> {
 	@Override
 	public void handleException() {
 		if (logger.isDebugEnabled()) {
-			logger.debug("add Exception [{}] to ExceptionBag", exception);
+			logger.debug("add Exception [{}] to ExceptionBag", exception.getClass());
 		}
 		exceptionBag.add(exception);
 	}
