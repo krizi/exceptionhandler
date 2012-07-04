@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
  */
 public class CommonExceptionHandler extends ExceptionHandler<Throwable> {
 
-	private static final Logger logger = LoggerFactory.getLogger(CommonExceptionHandler.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(CommonExceptionHandler.class);
 
-	public CommonExceptionHandler(Throwable exception) {
-		super(exception);
+	public CommonExceptionHandler(Class<?> clazz, Throwable exception) {
+		super(clazz, exception);
 	}
 
 	@Override

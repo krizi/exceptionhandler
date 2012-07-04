@@ -33,6 +33,6 @@ public class HandleExceptionAspect extends AbstractExceptionAspect {
 		if (logger.isDebugEnabled()) {
 			logger.debug("handle Exception...");
 		}
-		exceptionHandlerManager.handleException((Class<? extends Throwable>) getTargetClass(joinpoint), exception);
+		exceptionHandlerManager.handleException((Class<?>) getTargetClass(joinpoint), exception);
 	}
 }

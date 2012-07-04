@@ -15,9 +15,10 @@ import ch.krizi.exceptionhandler.handler.annotation.ExceptionHandlerConfig;
 @ExceptionHandlerConfig(Throwable.class)
 public class DefaultExceptionHandler extends ExceptionHandler<Throwable> {
 
-	private static final Logger logger = LoggerFactory.getLogger(DefaultExceptionHandler.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(DefaultExceptionHandler.class);
 
-	public DefaultExceptionHandler(Class<? extends Throwable> clazz, Throwable exception) {
+	public DefaultExceptionHandler(Class<?> clazz, Throwable exception) {
 		super(clazz, exception);
 	}
 

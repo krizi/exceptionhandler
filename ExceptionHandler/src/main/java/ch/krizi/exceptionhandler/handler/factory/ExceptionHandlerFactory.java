@@ -8,7 +8,6 @@ import java.util.List;
 
 import ch.krizi.exceptionhandler.handler.CommonExceptionHandler;
 import ch.krizi.exceptionhandler.handler.ExceptionHandler;
-import ch.krizi.exceptionhandler.handler.factory.AbstractExceptionHandlerFactory;
 
 /**
  * @author krizi
@@ -17,10 +16,11 @@ import ch.krizi.exceptionhandler.handler.factory.AbstractExceptionHandlerFactory
 public class ExceptionHandlerFactory extends AbstractExceptionHandlerFactory {
 
 	@Override
-	public List<ExceptionHandler<?>> getExceptionHandler(Throwable exception) {
+	public List<ExceptionHandler<?>> getExceptionHandler(Class<?> clazz,
+			Throwable exception) {
 		List<ExceptionHandler<?>> handler = new ArrayList<ExceptionHandler<?>>();
 
-		handler.add(new CommonExceptionHandler(exception));
+		handler.add(new CommonExceptionHandler(clazz, exception));
 
 		return handler;
 	}

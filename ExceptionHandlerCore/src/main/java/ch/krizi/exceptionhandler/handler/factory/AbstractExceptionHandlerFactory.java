@@ -16,9 +16,11 @@ import ch.krizi.exceptionhandler.handler.annotation.ExceptionHandlerConfig;
  * 
  */
 public abstract class AbstractExceptionHandlerFactory {
-	private static final Logger logger = LoggerFactory.getLogger(AbstractExceptionHandlerFactory.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(AbstractExceptionHandlerFactory.class);
 
-	public abstract List<ExceptionHandler<?>> getExceptionHandler(Class<? extends Throwable> classLogger, Throwable exception);
+	public abstract List<ExceptionHandler<?>> getExceptionHandler(
+			Class<?> classLogger, Throwable exception);
 
 	public abstract boolean hasSupportedExceptionHandler(Throwable exception);
 
@@ -29,10 +31,12 @@ public abstract class AbstractExceptionHandlerFactory {
 	 * @param exceptionHandlerClass
 	 * @return
 	 */
-	protected boolean canHandleException(Throwable throwable, Class<? extends ExceptionHandler<?>> exceptionHandlerClass) {
+	protected boolean canHandleException(Throwable throwable,
+			Class<? extends ExceptionHandler<?>> exceptionHandlerClass) {
 		boolean canHandle = false;
 
-		ExceptionHandlerConfig annotation = exceptionHandlerClass.getAnnotation(ExceptionHandlerConfig.class);
+		ExceptionHandlerConfig annotation = exceptionHandlerClass
+				.getAnnotation(ExceptionHandlerConfig.class);
 		Class<? extends Throwable> handledException = annotation.value();
 
 		if (annotation.handleSubtypes()) {
@@ -46,8 +50,10 @@ public abstract class AbstractExceptionHandlerFactory {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("can handle [Exception [{}], ExceptionHandler: [{}], Config: [{}] {} ", new Object[] {
-					throwable.getClass(), exceptionHandlerClass, annotation, canHandle });
+			logger.debug(
+					"can handle [Exception [{}], ExceptionHandler: [{}], Config: [{}] {} ",
+					new Object[] { throwable.getClass(), exceptionHandlerClass,
+							annotation, canHandle });
 		}
 
 		return canHandle;

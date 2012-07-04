@@ -29,11 +29,11 @@ public class SpringExceptionHandlerFactory extends AbstractExceptionHandlerFacto
 	protected Map<String, Class<? extends ExceptionHandler<?>>> mapping;
 
 	@Override
-	public List<ExceptionHandler<?>> getExceptionHandler(Class<? extends Throwable> classLogger, Throwable throwable) {
+	public List<ExceptionHandler<?>> getExceptionHandler(Class<?> throwedClass, Throwable throwable) {
 		List<ExceptionHandler<?>> exceptionHandlerList = new ArrayList<ExceptionHandler<?>>();
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("search ExceptionHandler by [class={}, throwable={}]", classLogger, throwable.getClass());
+			logger.debug("search ExceptionHandler by [class={}, throwable={}]", throwedClass, throwable.getClass());
 		}
 
 		for (Entry<String, Class<? extends ExceptionHandler<?>>> entry : mapping.entrySet()) {
@@ -46,14 +46,14 @@ public class SpringExceptionHandlerFactory extends AbstractExceptionHandlerFacto
 			}
 
 			if (canHandleException) {
-				exceptionHandlerList.add(createExceptionHandler(classLogger, entry.getKey(), throwable));
+				exceptionHandlerList.add(createExceptionHandler(throwedClass, entry.getKey(), throwable));
 			}
 		}
 
 		return exceptionHandlerList;
 	}
 
-	protected ExceptionHandler<?> createExceptionHandler(Class<? extends Throwable> classLogger, String springId,
+	protected ExceptionHandler<?> createExceptionHandler(Class<?> classLogger, String springId,
 			Throwable throwable) {
 
 		ExceptionHandler<?> exceptionHandler = exceptionHandlerUtils.getExceptionHandler(classLogger, springId,

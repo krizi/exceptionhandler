@@ -23,8 +23,7 @@ public class ExceptionHandlerUtilsSpringImpl implements ExceptionHandlerUtils {
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	public ExceptionHandler<?> getExceptionHandler(Class<? extends Throwable> classLogger, String beanId,
-			Throwable throwable) {
+	public ExceptionHandler<?> getExceptionHandler(Class<?> classLogger, String beanId, Throwable throwable) {
 		if (applicationContext.isSingleton(beanId)) {
 			if (logger.isWarnEnabled()) {
 				logger.warn("Bean [id={}] is not a Singleton!", beanId);

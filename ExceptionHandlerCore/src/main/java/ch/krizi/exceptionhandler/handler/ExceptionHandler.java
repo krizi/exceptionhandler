@@ -16,9 +16,9 @@ public abstract class ExceptionHandler<E extends Throwable> {
 	private boolean handleSubtypes = true;
 	protected E exception;
 	protected Logger classLogger;
-	protected Class<? extends E> throwingClass;
+	protected Class<?> throwingClass;
 
-	public ExceptionHandler(Class<? extends E> throwingClass, E exception) {
+	public ExceptionHandler(Class<?> throwingClass, E exception) {
 		this.throwingClass = throwingClass;
 		this.classLogger = LoggerFactory.getLogger(throwingClass);
 		this.exception = exception;

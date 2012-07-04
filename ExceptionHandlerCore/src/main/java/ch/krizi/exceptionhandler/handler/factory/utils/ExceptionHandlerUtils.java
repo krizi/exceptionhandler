@@ -21,6 +21,6 @@ public interface ExceptionHandlerUtils {
 	 * @param throwable
 	 * @return
 	 */
-	public ExceptionHandler<?> getExceptionHandler(Class<? extends Throwable> classLogger, String beanId,
+	public ExceptionHandler<?> getExceptionHandler(Class<?> classLogger, String beanId,
 			Throwable throwable);
 }

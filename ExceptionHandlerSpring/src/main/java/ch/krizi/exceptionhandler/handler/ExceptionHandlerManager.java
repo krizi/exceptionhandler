@@ -9,7 +9,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
@@ -34,7 +33,7 @@ public class ExceptionHandlerManager {
 		this.exceptionHandlerFactories = exceptionHandlerFactories;
 	}
 
-	public void handleException(Class<? extends Throwable> classLogger, Throwable e) {
+	public void handleException(Class<?> classLogger, Throwable e) {
 		Assert.notNull(e, "Exception must not be null");
 		Assert.notEmpty(exceptionHandlerFactories, "no ExceptionHandlerFactories found");
 
