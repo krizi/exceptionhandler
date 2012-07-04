@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<bean class="ch.krizi.exceptionhandler.handler.aspect.HandleExceptionAspect" />
-	<bean class="ch.krizi.exceptionhandler.suppress.aspect.SuppressExceptionAspect" />
-	<bean class="ch.krizi.exceptionhandler.wrapper.aspect.WrapExceptionAspect" />
+	<bean class="ch.krizi.exceptionhandler.handler.aspect.HandleExceptionAspect" factory-method="aspectOf" />
+	<bean class="ch.krizi.exceptionhandler.suppress.aspect.SuppressExceptionAspect" factory-method="aspectOf" />
+	<bean class="ch.krizi.exceptionhandler.wrapper.aspect.WrapExceptionAspect" factory-method="aspectOf" />
 </beans>
