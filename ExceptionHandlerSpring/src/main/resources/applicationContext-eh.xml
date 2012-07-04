@@ -9,7 +9,7 @@
 	<aop:aspectj-autoproxy />
 	<context:annotation-config />
 
-	<bean id="exceptionHandlerManagaer" class="ch.krizi.exceptionhandler.handler.ExceptionHandlerManager" />
+	<bean id="exceptionHandlerManager" class="ch.krizi.exceptionhandler.handler.ExceptionHandlerManager" />
 	
 	<bean
 		class="ch.krizi.exceptionhandler.factory.spring.utils.ExceptionHandlerUtilsSpringImpl" />
