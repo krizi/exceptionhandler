@@ -1,5 +1,7 @@
 package ch.sample.project;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,18 @@ public class SuppressExceptionAspectTestCase {
 	public void catchedByAspect() {
 		try {
 			sampleBean.throwAndSuppressException();
+		} catch (IllegalArgumentException e) {
+			Assert.fail("exception should be suppressed by aspect");
+		}
+	}
+
+	@Test
+	public void catchedByAspectAndReturnEmptyList() {
+		try {
+			List<?> list = sampleBean.throwAndSuppressExceptionReturnEmptyList();
+
+			Assert.assertNotNull(list);
+			Assert.assertTrue(list.isEmpty());
 		} catch (IllegalArgumentException e) {
 			Assert.fail("exception should be suppressed by aspect");
 		}

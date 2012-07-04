@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ch.krizi.exceptionhandler.aspect.AbstractExceptionAspect;
+import ch.krizi.exceptionhandler.suppress.annotation.Null;
 import ch.krizi.exceptionhandler.suppress.annotation.SuppressExceptions;
 
 /**
@@ -49,7 +50,13 @@ public class SuppressExceptionAspect extends AbstractExceptionAspect {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Exception suppressed", t);
 				}
+
+				Class<?> returnClass = suppressExceptions.returnClass();
+				if (!returnClass.equals(Null.class)) {
+					return returnClass.newInstance();
+				}
 				return null;
+
 			}
 		}
 	}

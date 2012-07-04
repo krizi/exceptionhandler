@@ -1,6 +1,8 @@
 package ch.sample.project;
 
 import java.nio.charset.IllegalCharsetNameException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Ignore;
 
@@ -18,6 +20,11 @@ public class SampleBean {
 
 	@SuppressExceptions
 	public void throwAndSuppressException() {
+		throw new IllegalArgumentException();
+	}
+
+	@SuppressExceptions(returnClass = ArrayList.class)
+	public List<?> throwAndSuppressExceptionReturnEmptyList() {
 		throw new IllegalArgumentException();
 	}
 

@@ -20,4 +20,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SuppressExceptions {
 	Class<? extends Throwable>[] value() default { Throwable.class };
+
+	Class<?> returnClass() default Null.class;
+
 }
