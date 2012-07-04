@@ -15,7 +15,7 @@
 		<junit.version>4.10</junit.version>
 		<commons-lang.version>3.1</commons-lang.version>
 		<slf4j-log4j12>1.6.4</slf4j-log4j12>
-		<aspectjtools.version>1.6.12</aspectjtools.version>
+		<aspectj.version>1.6.12</aspectj.version>
 		<aspectjrt.version>1.5.4</aspectjrt.version>
 		<cglib.version>2.2</cglib.version>
 		<java.version>1.6</java.version>
@@ -119,12 +119,12 @@
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjtools</artifactId>
-				<version>${aspectjtools.version}</version>
+				<version>${aspectj.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>aspectj</groupId>
+				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
-				<version>${aspectjrt.version}</version>
+				<version>${aspectj.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>cglib</groupId>
