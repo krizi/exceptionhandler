@@ -11,10 +11,12 @@
 
 	<properties>
 		<spring.version>3.1.1.RELEASE</spring.version>
+		<spring-agent.version>2.5.4</spring-agent.version>
 		<junit.version>4.10</junit.version>
 		<commons-lang.version>3.1</commons-lang.version>
 		<slf4j-log4j12>1.6.4</slf4j-log4j12>
 		<aspectjtools.version>1.6.12</aspectjtools.version>
+		<aspectjrt.version>1.5.4</aspectjrt.version>
 		<cglib.version>2.2</cglib.version>
 		<java.version>1.6</java.version>
 	</properties>
@@ -35,21 +37,23 @@
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<configuration>
 						<useProjectReferences>true</useProjectReferences>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
 						<buildcommands>
 							<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
-							<buildCommand>
-								<name>org.eclipse.ajdt.core.ajbuilder</name>
-								<arguments>
-									<aspectPath>org.springframework.aspects</aspectPath>
-								</arguments>
-							</buildCommand>
+							<!-- <buildCommand> -->
+							<!-- <name>org.eclipse.ajdt.core.ajbuilder</name> -->
+							<!-- <arguments> -->
+							<!-- <aspectPath>org.springframework.aspects</aspectPath> -->
+							<!-- </arguments> -->
+							<!-- </buildCommand> -->
 							<buildCommand>
 								<name>org.springframework.ide.eclipse.core.springbuilder</name>
 							</buildCommand>
 						</buildcommands>
 						<additionalProjectnatures>
 							<projectnature>org.eclipse.jdt.core.javanature</projectnature>
-							<projectnature>org.eclipse.ajdt.ui.ajnature</projectnature>
+							<!-- <projectnature>org.eclipse.ajdt.ui.ajnature</projectnature> -->
 							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
 						</additionalProjectnatures>
 					</configuration>
@@ -96,6 +100,13 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-instrument</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
 				<groupId>ch.krizi.exceptionhandler</groupId>
 				<artifactId>ExceptionHandlerCore</artifactId>
 				<version>${project.version}</version>
@@ -111,6 +122,11 @@
 				<version>${aspectjtools.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectjrt.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
 				<version>${cglib.version}</version>
@@ -120,7 +136,7 @@
 
 	<modules>
 		<module>../ExceptionHandler</module>
-		<module>../ExceptionHandlerAspects</module>
+		<module>../ExceptionHandlerSpring</module>
 		<module>../ExceptionHandlerCore</module>
 	</modules>
 </project>
