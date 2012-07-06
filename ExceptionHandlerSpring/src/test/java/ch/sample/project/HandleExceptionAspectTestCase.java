@@ -26,6 +26,7 @@ public class HandleExceptionAspectTestCase {
 	@Before
 	public void checkBean() {
 		Assert.assertNotNull(sampleBean);
+		exceptionBag.clear();
 	}
 
 	@Test
@@ -35,6 +36,14 @@ public class HandleExceptionAspectTestCase {
 		} catch (IllegalArgumentException e) {
 			// expected exception
 		}
+
+		Assert.assertNotNull(exceptionBag);
+		Assert.assertEquals(1, exceptionBag.size());
+	}
+
+	@Test
+	public void handledAndSuppressedByAspect() {
+		sampleBean.throwAndHandleExceptionAndSuppressException();
 
 		Assert.assertNotNull(exceptionBag);
 		Assert.assertEquals(1, exceptionBag.size());

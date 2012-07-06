@@ -17,6 +17,12 @@ public class SampleBean {
 	public void throwAndHandleException() {
 		throw new IllegalArgumentException();
 	}
+	
+	@HandleException
+	@SuppressExceptions
+	public void throwAndHandleExceptionAndSuppressException() {
+		throw new IllegalArgumentException();
+	}
 
 	@SuppressExceptions
 	public void throwAndSuppressException() {
