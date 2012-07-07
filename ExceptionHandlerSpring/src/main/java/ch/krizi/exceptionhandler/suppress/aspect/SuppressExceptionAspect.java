@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.krizi.exceptionhandler.aspect.AbstractExceptionAspect;
+import ch.krizi.exceptionhandler.aspect.utils.ExceptionAspectUtils;
 import ch.krizi.exceptionhandler.suppress.annotation.Null;
 import ch.krizi.exceptionhandler.suppress.annotation.SuppressExceptions;
 
@@ -19,7 +19,7 @@ import ch.krizi.exceptionhandler.suppress.annotation.SuppressExceptions;
  * 
  */
 @Aspect
-public class SuppressExceptionAspect extends AbstractExceptionAspect {
+public class SuppressExceptionAspect {
 	private static final Logger logger = LoggerFactory.getLogger(SuppressExceptionAspect.class);
 
 	@Pointcut("execution(public * *.*(..))")
@@ -41,7 +41,7 @@ public class SuppressExceptionAspect extends AbstractExceptionAspect {
 			if (!isSuppressException(t, suppressExceptions)) {
 				throw t;
 			} else {
-				Logger clazzLogger = getLogger(proceedingJoinPoint);
+				Logger clazzLogger = ExceptionAspectUtils.getLogger(proceedingJoinPoint);
 				if (clazzLogger.isDebugEnabled()) {
 					Object[] logParams = new Object[] { proceedingJoinPoint.getSignature().toLongString(),
 							t.getClass(), t.getLocalizedMessage() };
@@ -63,7 +63,7 @@ public class SuppressExceptionAspect extends AbstractExceptionAspect {
 
 	protected boolean isSuppressException(Throwable t, SuppressExceptions suppressExceptions) {
 		for (Class<? extends Throwable> clazz : suppressExceptions.value()) {
-			if (super.isExceptionInstanceOf(t, clazz)) {
+			if (ExceptionAspectUtils.isExceptionInstanceOf(t, clazz)) {
 				return true;
 			}
 		}

@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.krizi.exceptionhandler.aspect.AbstractExceptionAspect;
+import ch.krizi.exceptionhandler.aspect.utils.ExceptionAspectUtils;
 import ch.krizi.exceptionhandler.wrapper.ExceptionWrapper;
 import ch.krizi.exceptionhandler.wrapper.annotation.WrapException;
 import ch.krizi.exceptionhandler.wrapper.annotation.WrapExceptions;
@@ -21,7 +21,7 @@ import ch.krizi.exceptionhandler.wrapper.annotation.WrapExceptions;
  * 
  */
 @Aspect
-public class WrapExceptionAspect extends AbstractExceptionAspect {
+public class WrapExceptionAspect {
 	private static final Logger logger = LoggerFactory.getLogger(WrapExceptionAspect.class);
 
 	@Pointcut("execution(public * *.*(..))")
@@ -78,7 +78,7 @@ public class WrapExceptionAspect extends AbstractExceptionAspect {
 	protected Throwable wrapException(Throwable throwable, WrapException... wrapExceptions) throws Throwable {
 		if (!ArrayUtils.isEmpty(wrapExceptions)) {
 			for (WrapException wrapException : wrapExceptions) {
-				if (isExceptionInstanceOf(throwable, wrapException.catchException())) {
+				if (ExceptionAspectUtils.isExceptionInstanceOf(throwable, wrapException.catchException())) {
 					Class<? extends ExceptionWrapper<?, ?>> exceptionWrapperClass = wrapException.using();
 					ExceptionWrapper newInstance = exceptionWrapperClass.newInstance();
 					return newInstance.wrap(throwable, wrapException.throwAs(), wrapException.message());
