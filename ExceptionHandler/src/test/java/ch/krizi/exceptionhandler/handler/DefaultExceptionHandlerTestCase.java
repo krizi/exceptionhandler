@@ -10,6 +10,7 @@ import org.junit.Test;
  * 
  */
 public class DefaultExceptionHandlerTestCase {
+	@SuppressWarnings("unused")
 	private DefaultExceptionHandler exceptionHandler;
 
 	@Test
