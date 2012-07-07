@@ -40,6 +40,11 @@ public abstract class ExceptionHandler<E extends Throwable> {
 	 *            throwed exception
 	 */
 	public ExceptionHandler(Class<?> throwingClass, E exception) {
+		if (throwingClass == null) {
+			throw new IllegalArgumentException("Throwing CLass must not be null");
+		} else if (exception == null) {
+			throw new IllegalArgumentException("Exception must not be null");
+		}
 		this.throwingClass = throwingClass;
 		this.classLogger = LoggerFactory.getLogger(throwingClass);
 		this.exception = exception;

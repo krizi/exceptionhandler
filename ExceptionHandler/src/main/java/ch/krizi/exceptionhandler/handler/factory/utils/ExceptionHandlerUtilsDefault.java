@@ -22,9 +22,16 @@ public class ExceptionHandlerUtilsDefault implements ExceptionHandlerUtils {
 	@Override
 	public ExceptionHandler<?> createExceptionHandler(Class<?> throwingClass, Throwable throwable, String beanId,
 			Class<? extends ExceptionHandler<?>> exceptionHandlerClass) {
+		if (logger.isTraceEnabled()) {
+			Object[] params = new Object[] { throwingClass, throwable, beanId, exceptionHandlerClass };
+			logger.trace(
+					"create ExeptionHandler [throwingClass={}, throwable={}, beanId={}, exceptionHandlerClass={}]",
+					params);
+		}
+
 		try {
-			Constructor<? extends ExceptionHandler<?>> constructor = exceptionHandlerClass.getConstructor(
-					throwingClass, throwable.getClass());
+			Constructor<? extends ExceptionHandler<?>> constructor = exceptionHandlerClass.getConstructor(Class.class,
+					Throwable.class);
 			return constructor.newInstance(throwingClass, throwable);
 		} catch (Exception e) {
 			if (logger.isErrorEnabled()) {

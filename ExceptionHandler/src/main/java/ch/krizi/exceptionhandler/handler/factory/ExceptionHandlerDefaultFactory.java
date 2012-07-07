@@ -28,10 +28,22 @@ public class ExceptionHandlerDefaultFactory extends AbstractExceptionHandlerFact
 
 	@Override
 	public List<ExceptionHandler<?>> getExceptionHandler(Class<?> throwedClass, Throwable throwable) {
+		if (mapping == null) {
+			throw new IllegalArgumentException("Mapping must not be null");
+		} else if (exceptionHandlerUtils == null) {
+			throw new IllegalArgumentException("ExceptionHandlerUtils must not be null");
+		}
+
 		List<ExceptionHandler<?>> exceptionHandlerList = new ArrayList<ExceptionHandler<?>>();
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("search ExceptionHandler by [class={}, throwable={}]", throwedClass, throwable.getClass());
+		}
+
+		if (mapping.isEmpty()) {
+			if (logger.isWarnEnabled()) {
+				logger.warn("ExceptionHandler Mapping is empty");
+			}
 		}
 
 		for (Entry<String, Class<? extends ExceptionHandler<?>>> entry : mapping.entrySet()) {
