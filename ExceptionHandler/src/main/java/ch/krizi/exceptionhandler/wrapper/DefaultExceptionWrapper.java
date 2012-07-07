@@ -60,7 +60,7 @@ public class DefaultExceptionWrapper implements ExceptionWrapper<Throwable, Thro
 			logger.debug("root-Exception [{}] new wrapped exception [{}]", throwedException, newInstance.getClass());
 		}
 		if (newInstance == null) {
-			throw new WrapperException("no constructor found");
+//			throw new WrapperException("no constructor found");
 		}
 
 		return newInstance;

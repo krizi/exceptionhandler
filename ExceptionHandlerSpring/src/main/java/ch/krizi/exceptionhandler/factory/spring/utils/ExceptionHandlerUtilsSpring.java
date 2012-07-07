@@ -17,20 +17,29 @@ import ch.krizi.exceptionhandler.handler.factory.utils.ExceptionHandlerUtils;
  * @author krizi
  * 
  */
-public class ExceptionHandlerUtilsSpringImpl implements ExceptionHandlerUtils {
-	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerUtilsSpringImpl.class);
+public class ExceptionHandlerUtilsSpring implements ExceptionHandlerUtils {
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerUtilsSpring.class);
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
-	public ExceptionHandler<?> getExceptionHandler(Class<?> classLogger, String beanId, Throwable throwable) {
+	public ExceptionHandler<?> createExceptionHandler(Class<?> classLogger, Throwable throwable, String beanId,
+			Class<? extends ExceptionHandler<?>> exceptionHandlerClass) {
+
 		if (applicationContext.isSingleton(beanId)) {
 			if (logger.isWarnEnabled()) {
-				logger.warn("Bean [id={}] is not a Singleton!", beanId);
+				logger.warn("Bean [id={}, class={}] is not a Singleton!", beanId, exceptionHandlerClass);
 			}
 		}
 		ExceptionHandler<?> exceptionHandler = (ExceptionHandler<?>) applicationContext.getBean(beanId, classLogger,
 				throwable);
+
+		if (!exceptionHandler.getClass().equals(exceptionHandlerClass)) {
+			if (logger.isWarnEnabled()) {
+				logger.warn("ExceptionHandler [{}] should be type of [{}]", exceptionHandler.getClass(),
+						exceptionHandlerClass);
+			}
+		}
 
 		return exceptionHandler;
 	}

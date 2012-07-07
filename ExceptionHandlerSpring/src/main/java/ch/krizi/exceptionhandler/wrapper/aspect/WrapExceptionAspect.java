@@ -17,6 +17,8 @@ import ch.krizi.exceptionhandler.wrapper.annotation.WrapException;
 import ch.krizi.exceptionhandler.wrapper.annotation.WrapExceptions;
 
 /**
+ * TODO use spring-context to create new instaces
+ * 
  * @author krizi
  * 
  */

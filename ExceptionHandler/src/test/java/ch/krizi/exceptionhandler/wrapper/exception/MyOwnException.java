@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.krizi.exceptionhandler.wrapper;
+package ch.krizi.exceptionhandler.wrapper.exception;
 
 /**
  * @author krizi

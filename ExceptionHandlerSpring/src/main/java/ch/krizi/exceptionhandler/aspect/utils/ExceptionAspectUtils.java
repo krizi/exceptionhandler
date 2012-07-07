@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ExceptionAspectUtils {
 	/**
-	 * Get Logger by JoinPoint.
+	 * get Logger for JoinPoint.
 	 * 
 	 * @param joinpoint
 	 * @return
@@ -22,6 +22,12 @@ public class ExceptionAspectUtils {
 		return LoggerFactory.getLogger(getTargetClass(joinpoint));
 	}
 
+	/**
+	 * get class for joinpoint
+	 * 
+	 * @param joinpoint
+	 * @return
+	 */
 	public static Class<?> getTargetClass(JoinPoint joinpoint) {
 		return joinpoint.getTarget().getClass();
 	}

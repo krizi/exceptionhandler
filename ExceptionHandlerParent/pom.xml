@@ -20,6 +20,22 @@
 		<cglib.version>2.2</cglib.version>
 		<java.version>1.6</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<id>clapper-org-maven-repo</id>
+			<name>org.clapper Maven Repo</name>
+			<url>http://maven.clapper.org/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -135,8 +151,8 @@
 	</dependencyManagement>
 
 	<modules>
+		<module>../ExceptionHandlerCore</module>
 		<module>../ExceptionHandler</module>
 		<module>../ExceptionHandlerSpring</module>
-		<module>../ExceptionHandlerCore</module>
 	</modules>
 </project>

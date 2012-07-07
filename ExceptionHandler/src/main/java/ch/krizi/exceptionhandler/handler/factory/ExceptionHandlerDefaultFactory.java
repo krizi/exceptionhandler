@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.krizi.exceptionhandler.factory.spring;
+package ch.krizi.exceptionhandler.handler.factory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +10,18 @@ import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import ch.krizi.exceptionhandler.handler.ExceptionHandler;
-import ch.krizi.exceptionhandler.handler.factory.AbstractExceptionHandlerFactory;
 import ch.krizi.exceptionhandler.handler.factory.utils.ExceptionHandlerUtils;
 
 /**
  * @author krizi
  * 
  */
-public class SpringExceptionHandlerFactory extends AbstractExceptionHandlerFactory {
-	private static final Logger logger = LoggerFactory.getLogger(SpringExceptionHandlerFactory.class);
+public class ExceptionHandlerDefaultFactory extends AbstractExceptionHandlerFactory {
 
-	@Autowired
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerDefaultFactory.class);
+
 	protected ExceptionHandlerUtils exceptionHandlerUtils;
 
 	protected Map<String, Class<? extends ExceptionHandler<?>>> mapping;
@@ -46,27 +44,43 @@ public class SpringExceptionHandlerFactory extends AbstractExceptionHandlerFacto
 			}
 
 			if (canHandleException) {
-				exceptionHandlerList.add(createExceptionHandler(throwedClass, entry.getKey(), throwable));
+				exceptionHandlerList.add(createExceptionHandler(throwedClass, throwable, entry.getKey(),
+						entry.getValue()));
 			}
 		}
 
 		return exceptionHandlerList;
 	}
 
-	protected ExceptionHandler<?> createExceptionHandler(Class<?> classLogger, String springId,
-			Throwable throwable) {
-
-		ExceptionHandler<?> exceptionHandler = exceptionHandlerUtils.getExceptionHandler(classLogger, springId,
-				throwable);
+	/**
+	 * create a ExceptionHandler using {@link ExceptionHandlerUtils}
+	 * 
+	 * @param throwingClass
+	 *            class where the exception occured
+	 * @param beanId
+	 *            id for creating a bean
+	 * @param throwable
+	 *            throwed exception
+	 * @return
+	 */
+	protected ExceptionHandler<?> createExceptionHandler(Class<?> throwingClass, Throwable throwable, String beanId,
+			Class<? extends ExceptionHandler<?>> exceptionHandlerClass) {
+		ExceptionHandler<?> exceptionHandler = exceptionHandlerUtils.createExceptionHandler(throwingClass, throwable,
+				beanId, exceptionHandlerClass);
 
 		if (logger.isDebugEnabled()) {
-			Object[] logParams = new Object[] { exceptionHandler.getClass(), classLogger, springId,
+			Object[] logParams = new Object[] { exceptionHandler.getClass(), throwingClass, beanId,
 					throwable.getClass() };
 			logger.debug("create ExceptionHandler[{}] by Params[class={}, springI={}, throwable={}]", logParams);
 		}
 		return exceptionHandler;
 	}
 
+	/**
+	 * checks all ExceptionHandler if Exception could be handled.
+	 * 
+	 * @return true exceptions can be handled
+	 */
 	@Override
 	public boolean hasSupportedExceptionHandler(Throwable exception) {
 		// TODO Auto-generated method stub
@@ -79,5 +93,13 @@ public class SpringExceptionHandlerFactory extends AbstractExceptionHandlerFacto
 
 	public void setMapping(Map<String, Class<? extends ExceptionHandler<?>>> mapping) {
 		this.mapping = mapping;
+	}
+
+	public ExceptionHandlerUtils getExceptionHandlerUtils() {
+		return exceptionHandlerUtils;
+	}
+
+	public void setExceptionHandlerUtils(ExceptionHandlerUtils exceptionHandlerUtils) {
+		this.exceptionHandlerUtils = exceptionHandlerUtils;
 	}
 }

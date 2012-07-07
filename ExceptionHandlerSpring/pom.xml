@@ -20,7 +20,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>ch.krizi.exceptionhandler</groupId>
-			<artifactId>ExceptionHandlerCore</artifactId>
+			<artifactId>ExceptionHandler</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

@@ -10,6 +10,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * defines that the Exceptions should be handled here
+ * 
  * @author krizi
  * 
  */
@@ -17,5 +19,9 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleException {
+	/**
+	 * defines the handled Exceptions
+	 * 
+	 */
 	Class<? extends Throwable>[] exceptions() default { RuntimeException.class };
 }

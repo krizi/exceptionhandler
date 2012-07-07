@@ -17,10 +17,11 @@ public interface ExceptionHandlerUtils {
 	 * LŠdt den ExceptionHandler aus dem Context.
 	 * 
 	 * @param classLogger
-	 * @param beanId
 	 * @param throwable
+	 * @param beanId
+	 * @param exceptionHandlerClass
 	 * @return
 	 */
-	public ExceptionHandler<?> getExceptionHandler(Class<?> classLogger, String beanId,
-			Throwable throwable);
+	public ExceptionHandler<?> createExceptionHandler(Class<?> classLogger, Throwable throwable, String beanId,
+			Class<? extends ExceptionHandler<?>> exceptionHandlerClass);
 }

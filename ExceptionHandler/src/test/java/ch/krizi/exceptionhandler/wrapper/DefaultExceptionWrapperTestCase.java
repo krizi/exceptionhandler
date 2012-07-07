@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.krizi.exceptionhandler.wrapper.exception.MyOwnException;
+
 /**
  * @author krizi
  * 

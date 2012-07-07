@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
@@ -13,22 +13,35 @@
 
 	<util:list id="exceptionBag" scope="singleton" />
 
-
-	<bean id="exceptionHolder" class="ch.krizi.exceptionhandler.handler.ExceptionHolder"
-		parent="exceptionHandler">
+	<bean id="exceptionHolder" class="ch.krizi.exceptionhandler.handler.ExceptionHolder" parent="exceptionHandler">
 		<property name="exceptionBag" ref="exceptionBag" />
 	</bean>
 
-	<bean parent="exceptionHandlerFactory" id="sampleExceptionHandlerFactory"
-		class="ch.sample.project.SampleExceptionHandlerFactory">
+	<bean parent="exceptionHandlerFactory" id="exceptionHandlerDefaultFactory"
+		class="ch.krizi.exceptionhandler.handler.factory.ExceptionHandlerDefaultFactory">
 		<property name="mapping">
 			<map>
-				<entry key="defaultExceptionHandler" value="ch.krizi.exceptionhandler.handler.DefaultExceptionHandler" />
 				<entry key="exceptionHolder" value="ch.krizi.exceptionhandler.handler.ExceptionHolder" />
 				<entry key="unreachedExceptionHandler" value="ch.krizi.exceptionhandler.handler.UnreachedExceptionHandler" />
 			</map>
 		</property>
+		<property name="exceptionHandlerUtils">
+			<bean class="ch.krizi.exceptionhandler.factory.spring.utils.ExceptionHandlerUtilsSpring" />
+		</property>
 	</bean>
+
+	<!-- <bean parent="exceptionHandlerFactory" id="exceptionHandlerDefaultFactorySecond" -->
+	<!-- class="ch.krizi.exceptionhandler.handler.factory.ExceptionHandlerDefaultFactory"> -->
+	<!-- <property name="mapping"> -->
+	<!-- <map> -->
+	<!-- <entry key="defaultExceptionHandler" value="ch.krizi.exceptionhandler.handler.DefaultExceptionHandler" /> -->
+	<!-- <entry key="exceptionHolder" value="ch.krizi.exceptionhandler.handler.ExceptionHolder" /> -->
+	<!-- </map> -->
+	<!-- </property> -->
+	<!-- <property name="exceptionHandlerUtils"> -->
+	<!-- <bean class="ch.krizi.exceptionhandler.factory.spring.utils.ExceptionHandlerUtilsSpringImpl" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 
 </beans>

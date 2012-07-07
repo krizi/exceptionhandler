@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
+ * Configuration for the ExceptionHandlerFactory
  * 
  * @author krizi
  * 
@@ -16,5 +16,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExceptionHandlerFactoryConfig {
+
+	/**
+	 * defindes wich packages should be handled by this factory
+	 */
 	String[] packages();
 }

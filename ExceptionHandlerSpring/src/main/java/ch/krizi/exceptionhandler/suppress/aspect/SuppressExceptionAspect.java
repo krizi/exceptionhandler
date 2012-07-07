@@ -15,6 +15,9 @@ import ch.krizi.exceptionhandler.suppress.annotation.Null;
 import ch.krizi.exceptionhandler.suppress.annotation.SuppressExceptions;
 
 /**
+ * TODO create suppressException interface / use spring-context to create new
+ * instances
+ * 
  * @author krizi
  * 
  */

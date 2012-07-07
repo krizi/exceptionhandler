@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 import ch.krizi.exceptionhandler.handler.annotation.ExceptionHandlerConfig;
 
 /**
+ * Default ExceptionHandler. Only log the throwable with the classlogger on
+ * level Error.
+ * 
  * @author krizi
  * 
  */
