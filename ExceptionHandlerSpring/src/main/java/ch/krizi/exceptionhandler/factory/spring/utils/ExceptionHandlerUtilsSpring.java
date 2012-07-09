@@ -12,7 +12,7 @@ import ch.krizi.exceptionhandler.handler.ExceptionHandler;
 import ch.krizi.exceptionhandler.handler.factory.utils.ExceptionHandlerUtils;
 
 /**
- * LŠdt die ExceptionHandler aus dem Spring-Context.
+ * Laedt die ExceptionHandler aus dem Spring-Context.
  * 
  * @author krizi
  * 
