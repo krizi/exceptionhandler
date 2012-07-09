@@ -6,7 +6,7 @@ package ch.krizi.exceptionhandler.handler.factory.utils;
 import ch.krizi.exceptionhandler.handler.ExceptionHandler;
 
 /**
- * Utils-Klasse um die Exceptionhandler Context abhängig zu verarbeiten.
+ * Utils-Klasse um die Exceptionhandler Context abhaengig zu verarbeiten.
  * 
  * @author krizi
  * 
@@ -14,7 +14,7 @@ import ch.krizi.exceptionhandler.handler.ExceptionHandler;
 public interface ExceptionHandlerUtils {
 
 	/**
-	 * Lädt den ExceptionHandler aus dem Context.
+	 * Laedt den ExceptionHandler aus dem Context.
 	 * 
 	 * @param classLogger
 	 * @param throwable
