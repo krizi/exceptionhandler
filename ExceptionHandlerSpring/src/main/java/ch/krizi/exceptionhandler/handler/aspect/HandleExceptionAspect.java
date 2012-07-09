@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import ch.krizi.exceptionhandler.aspect.AbstractExceptionAspect;
+import ch.krizi.exceptionhandler.aspect.utils.ExceptionAspectUtils;
 import ch.krizi.exceptionhandler.handler.ExceptionHandlerManager;
 import ch.krizi.exceptionhandler.handler.annotation.HandleException;
 
@@ -22,7 +22,7 @@ import ch.krizi.exceptionhandler.handler.annotation.HandleException;
  * 
  */
 @Aspect
-public class HandleExceptionAspect extends AbstractExceptionAspect {
+public class HandleExceptionAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(HandleExceptionAspect.class);
 
@@ -33,10 +33,11 @@ public class HandleExceptionAspect extends AbstractExceptionAspect {
 	public void afterException(JoinPoint joinpoint, Throwable exception, HandleException handleException) {
 		Assert.notNull(exception, "exception musst not be null");
 		Assert.notNull(handleException, "annotation must not be null");
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("handle Exception...");
 		}
-		exceptionHandlerManager.handleException((Class<?>) getTargetClass(joinpoint), exception);
+
+		exceptionHandlerManager.handleException((Class<?>) ExceptionAspectUtils.getTargetClass(joinpoint), exception);
 	}
 }

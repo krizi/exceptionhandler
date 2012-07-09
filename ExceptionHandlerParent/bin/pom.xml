@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.krizi.exceptionhandler</groupId>
+	<artifactId>ExceptionHandlerParent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>ExceptionHandlerParent</name>
+	<description>Allgemeine ExceptionHandler.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<spring-agent.version>2.5.4</spring-agent.version>
+		<junit.version>4.10</junit.version>
+		<commons-lang.version>3.1</commons-lang.version>
+		<slf4j-log4j12>1.6.4</slf4j-log4j12>
+		<aspectj.version>1.6.12</aspectj.version>
+		<aspectjrt.version>1.5.4</aspectjrt.version>
+		<cglib.version>2.2</cglib.version>
+		<java.version>1.6</java.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<id>clapper-org-maven-repo</id>
+			<name>org.clapper Maven Repo</name>
+			<url>http://maven.clapper.org/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<configuration>
+						<useProjectReferences>true</useProjectReferences>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+						<buildcommands>
+							<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+							<!-- <buildCommand> -->
+							<!-- <name>org.eclipse.ajdt.core.ajbuilder</name> -->
+							<!-- <arguments> -->
+							<!-- <aspectPath>org.springframework.aspects</aspectPath> -->
+							<!-- </arguments> -->
+							<!-- </buildCommand> -->
+							<buildCommand>
+								<name>org.springframework.ide.eclipse.core.springbuilder</name>
+							</buildCommand>
+						</buildcommands>
+						<additionalProjectnatures>
+							<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+							<!-- <projectnature>org.eclipse.ajdt.ui.ajnature</projectnature> -->
+							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						</additionalProjectnatures>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j-log4j12}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-instrument</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>ch.krizi.exceptionhandler</groupId>
+				<artifactId>ExceptionHandlerCore</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.krizi.exceptionhandler</groupId>
+				<artifactId>ExceptionHandler</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjtools</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>../ExceptionHandlerCore</module>
+		<module>../ExceptionHandler</module>
+		<module>../ExceptionHandlerSpring</module>
+	</modules>
+</project>
