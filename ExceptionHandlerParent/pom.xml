@@ -10,6 +10,7 @@
 	<description>Allgemeine ExceptionHandler.</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.1.1.RELEASE</spring.version>
 		<spring-agent.version>2.5.4</spring-agent.version>
 		<junit.version>4.10</junit.version>
